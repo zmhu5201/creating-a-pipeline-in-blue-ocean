@@ -9,6 +9,15 @@ pipeline {
     }
 
     stage('Test') {
+      agent {
+        node {
+          label 'CI'
+        }
+
+      }
+      environment {
+        CI = 'true'
+      }
       steps {
         sh './jenkins/scripts/test.sh'
       }
